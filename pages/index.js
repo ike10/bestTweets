@@ -1,7 +1,7 @@
 import { Button } from '@chakra-ui/button'
 import { Image } from '@chakra-ui/image'
 import { Input } from '@chakra-ui/input'
-import { FaSun } from 'react-icons/fa';
+// import { FaSun } from 'react-icons/fa';
 // import {IoSunnySharp} from 'react-icons/io'
 import { Box, Flex, Spacer, Text } from '@chakra-ui/layout'
 import Head from 'next/head'
@@ -57,7 +57,7 @@ export default function Home() {
         ]}>
              <Spacer />
                 <Box  p='4' h='10' w='10' alignItems='center' justifyContent='center'>
-                      <FaSun size={20} />
+                      {/* <FaSun size={20} /> */}
                 </Box>
               
                {/* <IoSunnySharp/> */}
