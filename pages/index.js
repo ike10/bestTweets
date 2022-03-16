@@ -1,7 +1,7 @@
 import { Button } from '@chakra-ui/button'
 import { Image } from '@chakra-ui/image'
 import { Input } from '@chakra-ui/input'
-// import { FaSun } from 'react-icons/fa';
+import { FaSun } from 'react-icons/fa';
 // import {IoSunnySharp} from 'react-icons/io'
 import { Box, Flex, Spacer, Text } from '@chakra-ui/layout'
 import Head from 'next/head'
@@ -16,13 +16,14 @@ import { TwitterClient } from 'twitter-api-client';
 
 export default function Home() {
   
-    const [loading, isLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
     const [username, setUsername] = useState('')
     const [message, setMessage] = useState(null)
     const [tweets, setTweets] = useState([])
     const fetchTweets = async()=>{
         try{
             console.log('button fired')
+            setIsLoading(true)
             //  const data = await twitterClient.accountsAndUsers.usersSearch({ q: username });
             const response = await fetch(`/api/tweets/${username}`)
             // const response = await fetch(`https://api.twitter.com/2/users/by?usernames=${username}`, fetchParameters)
@@ -37,11 +38,14 @@ export default function Home() {
             console.log(sortedResult)
             // console.log(data.data.statuses.user)
             // console.log(data.data.statuses.entities)
+            setIsLoading(false)
            
         }catch(error){
+            setIsLoading(false)
             setMessage(error)
         }
     }
+
 
 
   return (
@@ -62,7 +66,7 @@ export default function Home() {
         ]}>
              <Spacer />
                 <Box  p='4' h='10' w='10' alignItems='center' justifyContent='center'>
-                      {/* <FaSun size={20} /> */}
+                      <FaSun size={20} />
                 </Box>
               
                {/* <IoSunnySharp/> */}
@@ -98,6 +102,7 @@ export default function Home() {
                     }}
                     placeholder='Enter name of handle' m='1' h='full' w='80%'/>
                 <Button
+                isLoading={isLoading}
                  onClick={()=>{
                      fetchTweets()
                  }}
