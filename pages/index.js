@@ -27,11 +27,16 @@ export default function Home() {
             const response = await fetch(`/api/tweets/${username}`)
             // const response = await fetch(`https://api.twitter.com/2/users/by?usernames=${username}`, fetchParameters)
             const data = await response.json()
-            setTweets([ ...data.data.statuses])
+            const result = data.data.statuses
+            // const sortedResult = result.sort(a,b=>{
+            //     return a.retweet_count - b.retweet_count
+            // })
+            // setTweets([ ...sortedResult])
+            setTweets([ ...result])
             // console.log(tweets)
-            console.log(data.data.statuses)
-            console.log(data.data.statuses.user)
-            console.log(data.data.statuses.entities)
+            console.log(sortedResult)
+            // console.log(data.data.statuses.user)
+            // console.log(data.data.statuses.entities)
            
         }catch(error){
             setMessage(error)
