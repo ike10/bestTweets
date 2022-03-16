@@ -1,11 +1,14 @@
 import { Button } from '@chakra-ui/button'
 import { Image } from '@chakra-ui/image'
 import { Input } from '@chakra-ui/input'
+import {GoLocation} from 'react-icons/go'
+import {AiOutlineRetweet} from 'react-icons/ai'
+import {GrFavorite} from 'react-icons/gr'
 import { Box, Flex, Spacer, Text } from '@chakra-ui/layout'
 // import Head from 'next/head'
 // import styles from '../styles/Home.module.css'
 
-export default function TweetCard() {
+export default function TweetCard({tweet_text, favourite_count, tweet_location, author_name, author_username, profile_image_url, tweet_likes_count, tweet_retweets_count }) {
   return (
      <Flex direction='column' borderRadius='2xl' border='2px' borderWidth='thin' borderColor='gray.200' h='full' p='2' mt='5'
      width={[
@@ -28,14 +31,14 @@ export default function TweetCard() {
                                               "50px", // 992px upwards
                                         ]}
                                         objectFit='cover'
-                                        src='https://bit.ly/dan-abramov'
-                                        alt='Dan Abramov'
+                                        src={profile_image_url}
+                                        alt='image'
                                         borderRadius='full'
                                     />
                                 </Flex>
                                 <Flex ml='10px' textAlign='left' direction='column' h='full' w='80%' p='1'>
-                                    <Text color='black' fontSize='lg' >Vulkan</Text>
-                                    <Text color='gray.400' fontSize='md'>@oche_ike</Text>
+                                    <Text color='black' fontSize='lg' >{author_name}</Text>
+                                    <Text color='gray.400' fontSize='md'>@{author_username}</Text>
                                 </Flex>
                             </Flex>
                             <Flex h='24' pl='2' direction='row' textAlign='left' borderBottomWidth='thin' borderColor='gray.200'>
@@ -48,17 +51,42 @@ export default function TweetCard() {
                                     "md",
                                     'md',
                                 ]}
-                                >CEO of @microacquire. Former CEO of Bizness Apps & Altcoin (both acquired). EIR at @500startups. Occasionally write for @entrepreneur and @forbes.</Text>
+                                >{tweet_text}</Text>
                             </Flex>
-                            <Flex direction='row' h='10' pt='2' pl='2'>
+                            <Flex alignItems='center' direction='row' h='10' pt='2' pl='2'>
+                                <GoLocation/>
                                 <Text fontSize={[
                                     "md",
                                     "md",
                                     "md",
                                     'md',
                                 ]}
+                                w='75%'
+                                textAlign='left'
+                                ml='2'
+                                >{tweet_location}</Text>
                                 
-                                >Lagos, Abuja</Text>
+                                <AiOutlineRetweet/>
+                                <Text fontSize={[
+                                    "md",
+                                    "md",
+                                    "md",
+                                    'md',
+                                ]}
+                                ml='2'
+                                mr='2'
+                                >{tweet_retweets_count}</Text>
+
+                                <GrFavorite/>
+                                <Text fontSize={[
+                                    "md",
+                                    "md",
+                                    "md",
+                                    'md',
+                                ]}
+                                ml='2'
+                                
+                                >{tweet_likes_count}</Text>
                             </Flex>
                         </Flex>
                

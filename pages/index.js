@@ -27,12 +27,12 @@ export default function Home() {
             const response = await fetch(`/api/tweets/${username}`)
             // const response = await fetch(`https://api.twitter.com/2/users/by?usernames=${username}`, fetchParameters)
             const data = await response.json()
-             console.log(data)
-            // const response = await fetch(`/api/tweets/${username}`)
-            // const data = await response.json()
-            // console.log(data)
-            // setTweets(data)
-            // setMessage('Succes!')
+            setTweets([ ...data.data.statuses])
+            // console.log(tweets)
+            console.log(data.data.statuses)
+            console.log(data.data.statuses.user)
+            console.log(data.data.statuses.entities)
+           
         }catch(error){
             setMessage(error)
         }
@@ -101,10 +101,25 @@ export default function Home() {
                 {/* tweets container */}
                 <Flex direction='column' justifyContent='center' m='5' w='full'  alignItems='center'>
                    {/* tweet card */}
-                       <TweetCard/>
-                       <TweetCard/>
-                       <TweetCard/>
-                       <TweetCard/>
+                       {
+                        tweets.map(tweet=>{
+                            {/* console.log(tweet.text) */}
+                            return(
+                                <TweetCard 
+                                key={tweet.id}
+                                author_name={tweet["user"].name}
+                                author_username={tweet["user"].screen_name}
+                                tweet_location={tweet["user"].location}
+                                tweet_text={tweet.text}
+                                profile_image_url={tweet["user"].profile_image_url}
+                                tweet_likes_count={tweet.favorite_count}
+                                tweet_retweets_count={tweet.retweet_count}
+                                
+                            />
+                            )
+                            
+                        })
+                       }
                    {/* end of tweet card */}
                 </Flex>
                 {/* end of tweets container */}
