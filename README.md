@@ -1,5 +1,6 @@
 ## Best Tweets web app
 Live Demo : [https://best-tweets-tweethunter.vercel.app/]
+
 This is a simple web app that displays the best tweets by a twitter user.
 Tools and Frameworks used:
 
@@ -62,3 +63,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 * Number of tweets retrieved from the user is limited on the standard plan
 * Time range which tweets can be searched for is limited on the standard plan
 * More work to be done to handle error from API
+* More work to be exclude retweeted tweets
