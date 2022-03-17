@@ -1,50 +1,19 @@
 import { Button } from '@chakra-ui/button'
-import { Image } from '@chakra-ui/image'
+
 import { Input } from '@chakra-ui/input'
-import { FaSun } from 'react-icons/fa';
-// import {IoSunnySharp} from 'react-icons/io'
+import { FaSun } from 'react-icons/fa'
 import { Box, Flex, Spacer, Text } from '@chakra-ui/layout'
 import Head from 'next/head'
 import { useState } from 'react'
 import TweetCard from '../components/tweetCard'
-// import styles from '../styles/Home.module.css'
+import useTwitterApi from '../hooks/useTwitterApi'
 
-import { TwitterClient } from 'twitter-api-client';
+export default function Home () {
 
-
-
-
-export default function Home() {
-  
-    const [isLoading, setIsLoading] = useState(false)
+    
     const [username, setUsername] = useState('')
-    const [message, setMessage] = useState(null)
-    const [tweets, setTweets] = useState([])
-    const fetchTweets = async()=>{
-        try{
-            console.log('button fired')
-            setIsLoading(true)
-            //  const data = await twitterClient.accountsAndUsers.usersSearch({ q: username });
-            const response = await fetch(`/api/tweets/${username}`)
-            // const response = await fetch(`https://api.twitter.com/2/users/by?usernames=${username}`, fetchParameters)
-            const data = await response.json()
-            const result = data.data.statuses
-            // const sortedResult = result.sort(a,b=>{
-            //     return a.retweet_count - b.retweet_count
-            // })
-            // setTweets([ ...sortedResult])
-            setTweets([ ...result])
-            // console.log(tweets)
-            console.log(sortedResult)
-            // console.log(data.data.statuses.user)
-            // console.log(data.data.statuses.entities)
-            setIsLoading(false)
-           
-        }catch(error){
-            setIsLoading(false)
-            setMessage(error)
-        }
-    }
+    const {isLoading, tweets, fetchTwitterApi, message} = useTwitterApi(`/api/tweets/${username}`)
+
 
 
 
@@ -69,7 +38,6 @@ export default function Home() {
                       <FaSun size={20} />
                 </Box>
               
-               {/* <IoSunnySharp/> */}
         </Flex>
         {/* end of header */}
         {/* main section */}
@@ -84,6 +52,7 @@ export default function Home() {
                 "50vw", // 992px upwards
                 ]}
             >
+            {message ? <Text> {message} </Text> : null }
             
                 <Flex direction='row' m='2' h='12' 
                 width={[
@@ -104,7 +73,8 @@ export default function Home() {
                 <Button
                 isLoading={isLoading}
                  onClick={()=>{
-                     fetchTweets()
+                    
+                     fetchTwitterApi()
                  }}
                  colorScheme='green' m='1' h='full' w='20%'>Submit</Button>
                 </Flex>
@@ -113,7 +83,7 @@ export default function Home() {
                    {/* tweet card */}
                        {
                         tweets.map(tweet=>{
-                            {/* console.log(tweet.text) */}
+                           
                             return(
                                 <TweetCard 
                                 key={tweet.id}
