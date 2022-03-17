@@ -7,14 +7,31 @@ import Head from 'next/head'
 import { useState } from 'react'
 import TweetCard from '../components/tweetCard'
 import useTwitterApi from '../hooks/useTwitterApi'
+import { FormControl } from '@chakra-ui/form-control'
 
 export default function Home () {
 
     
     const [username, setUsername] = useState('')
-    const {isLoading, tweets, fetchTwitterApi, message} = useTwitterApi(`/api/tweets/${username}`)
+    const {isLoading, tweets, fetchTwitterApi, message, setMessage} = useTwitterApi(`/api/tweets/${username}`)
 
-
+    const handleSubmit = (username) =>{
+        if (!username){
+            setMessage('You must enter a username')
+            setTimeout(()=>{
+                setMessage('')
+            }, 5000)
+        }else if(username > 1){
+            setMessage('You must be more than 2 characters')
+            setTimeout(()=>{
+                setMessage('')
+            }, 5000)
+        }else{
+            
+            fetchTwitterApi()
+        }
+       
+    }
 
 
   return (
@@ -53,7 +70,7 @@ export default function Home () {
                 ]}
             >
             {message ? <Text> {message} </Text> : null }
-            
+               
                 <Flex direction='row' m='2' h='12' 
                 width={[
                 "90vw", // base
@@ -69,15 +86,17 @@ export default function Home () {
                         e.preventDefault
                         setUsername(e.target.value)
                     }}
+                    
                     placeholder='Enter name of handle' m='1' h='full' w='80%'/>
                 <Button
                 isLoading={isLoading}
                  onClick={()=>{
                     
-                     fetchTwitterApi()
+                     handleSubmit(username)
                  }}
                  colorScheme='green' m='1' h='full' w='20%'>Submit</Button>
                 </Flex>
+                
                 {/* tweets container */}
                 <Flex direction='column' justifyContent='center' m='5' w='full'  alignItems='center'>
                    {/* tweet card */}

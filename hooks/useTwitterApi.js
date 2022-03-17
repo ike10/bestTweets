@@ -34,7 +34,7 @@ const useTwitterApi = (url) =>{
     //     fetchTwitterApi()
     // }, [])
 
-    return {isLoading, tweets, fetchTwitterApi, message}
+    return {isLoading, tweets, fetchTwitterApi, message, setMessage}
 
 }
 
