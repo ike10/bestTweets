@@ -1,6 +1,8 @@
 ## Best Tweets web app
+Live Demo : [https://best-tweets-tweethunter.vercel.app/]
 This is a simple web app that displays the best tweets by a twitter user.
 Tools and Frameworks used:
+
 * NextJS
 * Functional Components
 * ChakraUI
