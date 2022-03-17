@@ -54,3 +54,9 @@ vercel
 For further information on deployment. check.[Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+## Limitation (Areas for modification/improvement)
+* Number of tweets retrieved from the user is limited on the standard plan
+* Time range which tweets can be searched for is limited on the standard plan
+* More work to be done to handle error from API

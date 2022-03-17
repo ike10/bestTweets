@@ -7,7 +7,6 @@ import Head from 'next/head'
 import { useState } from 'react'
 import TweetCard from '../components/tweetCard'
 import useTwitterApi from '../hooks/useTwitterApi'
-import { FormControl } from '@chakra-ui/form-control'
 
 export default function Home () {
 
@@ -15,6 +14,7 @@ export default function Home () {
     const [username, setUsername] = useState('')
     const {isLoading, tweets, fetchTwitterApi, message, setMessage} = useTwitterApi(`/api/tweets/${username}`)
 
+    // handle button click (this includes input validation)
     const handleSubmit = (username) =>{
         if (!username){
             setMessage('You must enter a username')
@@ -100,6 +100,7 @@ export default function Home () {
                 {/* tweets container */}
                 <Flex direction='column' justifyContent='center' m='5' w='full'  alignItems='center'>
                    {/* tweet card */}
+                   {/* loop over tweets to display them */}
                        {
                         tweets.map(tweet=>{
                            

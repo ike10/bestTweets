@@ -1,12 +1,11 @@
-import { Button } from '@chakra-ui/button'
+
 import { Image } from '@chakra-ui/image'
-import { Input } from '@chakra-ui/input'
+
 import {GoLocation} from 'react-icons/go'
 import {AiOutlineRetweet} from 'react-icons/ai'
 import {GrFavorite} from 'react-icons/gr'
 import { Box, Flex, Spacer, Text } from '@chakra-ui/layout'
-// import Head from 'next/head'
-// import styles from '../styles/Home.module.css'
+
 
 export default function TweetCard({tweet_text, favourite_count, tweet_location, author_name, author_username, profile_image_url, tweet_likes_count, tweet_retweets_count }) {
   return (
