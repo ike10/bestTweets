@@ -21,7 +21,7 @@ export default function Home () {
             setTimeout(()=>{
                 setMessage('')
             }, 5000)
-        }else if(username > 1){
+        }else if(username > 2){
             setMessage('You must be more than 2 characters')
             setTimeout(()=>{
                 setMessage('')
