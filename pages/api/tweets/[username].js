@@ -32,6 +32,11 @@ export default async function handler(req, res) {
             
         }catch(error){
             console.log(error)
+            res.status(400).json({
+                message:'error',
+                data: error,
+            
+            })
         }
 
     // Process a POST request
